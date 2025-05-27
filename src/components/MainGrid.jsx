@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import SummaryCards from './SummaryCards'
 import OrderStatusCard from './OrderStatusCard'
+import CreditCard from './CreditCard'
 
 const MainGrid = () => {
   return (
@@ -15,6 +16,9 @@ const MainGrid = () => {
     </Box>
     <Box sx={{width:'355px', height:'308px', top:'136px', left:'1115px', position:'absolute'}}>
         <OrderStatusCard/>
+    </Box>
+    <Box sx={{width:'355px', height:'474px', top:'462px', left:'1115px', position:'absolute'}}>
+      <CreditCard/>
     </Box>
     </>
   )

@@ -5,6 +5,9 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import RepeatOnIcon from '@mui/icons-material/RepeatOn';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import ThreePOutlinedIcon from '@mui/icons-material/ThreePOutlined';
+import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 
 const SummaryCards = () => {
   return (
@@ -22,31 +25,6 @@ const SummaryCards = () => {
         </Button>
       </Box>
       <Box>
-        {/* <Box
-          sx={{width: '419.93px',height: '151.48px',top: '73px',left: '17px',borderRadius: '8.77px',border: '1px solid #D9D9D9',
-            position: 'absolute',boxSizing: 'border-box',}}>
-          <Box sx={{ width:'389.52px',height:'120.8px', top:'224.34px', left:'212.17px',display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Box
-              sx={{width: '33.56px',height: '33.56px',backgroundColor: 'orange',display: 'flex',alignItems: 'center',
-                justifyContent: 'center',borderRadius: '20%',}}>
-              <AddShoppingCartOutlinedIcon sx={{ color: '#FFFFFF' }} />
-            </Box>
-
-            <Box>
-              <Typography sx={{ fontFamily: 'Poppins',fontSize: '16.67px',color: '#000',fontWeight: 400,lineHeight: '28.08px',}}>
-                Total orders
-              </Typography>
-              <Typography sx={{fontFamily: 'Poppins',fontSize: '38.61px',color: '#000',fontWeight: 600,lineHeight: '28.08px',}}>
-                300
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={{
-            position: 'absolute', top: '4.25px',left: '276.94px', width: '112.31px',height: '112.31px',display: 'flex',
-            alignItems: 'center',justifyContent: 'center',}}>
-            <ShoppingCartOutlinedIcon sx={{ width: '93.5px', height: '93.59px', color: '#D9D9D9',}}/>
-          </Box>
-        </Box> */}
         <Box id="summary-card-1"
           sx={{width: '419.93px',height: '151.48px',top: '73px',left: '17px',borderRadius: '8.77px',border: '1px solid #D9D9D9',
             position: 'absolute',boxSizing: 'border-box',}}>
@@ -106,7 +84,7 @@ const SummaryCards = () => {
             }}>
               <Box id="icon-box" sx={{width: '31.59px',height: '31.59px',backgroundColor: '#EA232B',display: 'flex',alignItems: 'center',
                 justifyContent: 'center',borderRadius: '20%',}}>
-              <AddShoppingCartOutlinedIcon sx={{ color: '#FFFFFF' }} />
+              <PendingActionsIcon sx={{ color: '#FFFFFF' }} />
             </Box>
               <Box id="price" sx={{width:'154px', height:'64.14px', top:'48.26px', gap:'6.14px', position:'absolute'}}>
                 <Typography sx={{ fontFamily: 'Poppins',fontSize: '16.67px',color: '#000',fontWeight: 400,lineHeight: '28.08px',}}>
@@ -118,7 +96,7 @@ const SummaryCards = () => {
               </Box>
             </Box>
             <Box id="right-part" sx={{ width: '131.61px', height: '118.45px', right:'0px', position:'absolute'}}>
-              <ShoppingCartOutlinedIcon sx={{ width: '93.5px', height: '93.59px', color: '#D9D9D9',}}/>
+              <AccessTimeOutlinedIcon sx={{ width: '93.5px', height: '93.59px', color: '#D9D9D9',}}/>
             </Box>
           </Box>
         </Box>
@@ -129,8 +107,8 @@ const SummaryCards = () => {
             <Box id="left-part" sx={{width: '207.94px',height: '112.8px',top: '4px', position:'absolute',
               display:'flex', flexDirection:'column', alignItems:'flex-start'
             }}>
-              <Box id="icon-box">
-                <RepeatOnIcon sx={{ color: '#FF7308', width:'29.83px', height:'31.59px',top:'4px', borderRadius:'7.9px' }} />
+              <Box id="icon-box" sx={{backgroundColor:'#ff7308', width:'29.83px', height:'31.59px',top:'4px', borderRadius:'7.9px'}}>
+                <ThreePOutlinedIcon sx={{ color: '#FFF', width:'18.22px', height:'18.22px',top:'8.46px',left:'5.75px',position:'absolute', borderRadius:'7.9px' }} />
               </Box>
               <Box id="price" sx={{width:'207.94px', height:'64.14px', top:'49.13px', gap:'6.14px', position:'absolute'}}>
                 <Typography sx={{ fontFamily: 'Poppins',fontSize: '16.67px',color: '#000',fontWeight: 400,lineHeight: '28.08px',}}>
@@ -142,7 +120,7 @@ const SummaryCards = () => {
               </Box>
             </Box>
             <Box id="right-part" sx={{ width: '95.87px', height: '95.87px', top: '19.17px', left: '301.04px', position: 'absolute' }}>
-              <CurrencyRupeeIcon 
+              <ThreePOutlinedIcon 
                 sx={{ width: '79.9px', height: '79.9px', position: 'absolute', top: '7.99px', left: '7.99px', color: '#D9D9D9' }} />
             </Box>
           </Box>
