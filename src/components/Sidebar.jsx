@@ -29,7 +29,7 @@ const activeIconStyle = {
 
 const Sidebar = () => {
   return (
-    <Box sx={{display: 'flex', flexDirection:'column', width:'145px', height:'1043px', left:'-1px', borderRight: '0.1px solid #220D5B'
+    <Box sx={{display: 'flex', flexDirection:'column', width:'145px', height:'1043px', left:'-1px',position:'absolute', borderRight: '0.1px solid #220D5B'
         , backgroundColor:'#FFFFFF'}}>
         <Avatar
             src={Asthra}
