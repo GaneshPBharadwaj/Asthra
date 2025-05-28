@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import { BarChart } from '@mui/x-charts/BarChart';
+import CalendarModal from './CalendarModal';
 
 const AnalyticGraph = () => {
+
+    const [calendarOpen, setCalendarOpen] = useState(false);
 
   const xLabels = [
     'Monday\n01-05-2025',
@@ -24,21 +27,21 @@ const AnalyticGraph = () => {
         <Box sx={{width:'132.25px', height:'15px', top:'32px', left:'314px', position:'absolute', gap:'8.02px',
             display:'flex', flexDirection:'row' }}>
             <Box sx={{ width: '14.24px', height: '14.24px', borderRadius: '50%', backgroundColor: '#EA232B' }} />
-            <Typography sx={{ width:'110px',height:'15px',fontFamily:'Open Sans', 
-                fontWeight:'400',fontSize: '11.19px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
+            <Typography sx={{ width:'110px',height:'15px',fontFamily:'Poppins', 
+                fontWeight:'400',fontSize: '10.2px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
                     Total Order Received
             </Typography>
         </Box>
         <Box sx={{width:'154.25px', height:'15px', top:'32.89px', left:'461.86px', position:'absolute', gap:'8.02px',
             display:'flex', flexDirection:'row' }}>
             <Box sx={{ width: '14.24px', height: '14.24px', borderRadius: '50%', backgroundColor: '#FBD7D9' }} />
-            <Typography sx={{ width:'132px',height:'15px',fontFamily:'Open Sans', 
-                fontWeight:'400',fontSize: '11.19px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
+            <Typography sx={{ width:'132px',height:'15px',fontFamily:'Poppins', 
+                fontWeight:'400',fontSize: '10.2px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
                     Orders Approval Pending
             </Typography>
         </Box>
         <Typography sx={{ width:'99px',height:'21px', top:'31px', left:'635px', position:'absolute',
-        fontFamily:'Poppins', fontWeight:'500',fontSize: '14.18px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
+        fontFamily:'Poppins', fontWeight:'500',fontSize: '13.18px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
                 Sort By Month
         </Typography>
         <Box sx={{width:'118.56px', height:'32.79px', top:'25px', left:'742px',borderRadius:'7.82px',
@@ -46,14 +49,25 @@ const AnalyticGraph = () => {
                 <Box sx={{width:'17.66px', height:'17.66px', top:'7.38px', left:'15.46px', position:'absolute',}}>
                     <CalendarMonthOutlinedIcon sx={{width:'13.24px', height:'14.72px', top:'1.47px', left:'2.21px', position:'absolute',}}/>
                 </Box>
-                <Box sx={{width:'60px', height:'18px', top:'6.2px', left:'42px',gap:'12.26px', position:'absolute'}}>
+                <Box onClick={() => setCalendarOpen(prev => !prev)} sx={{width:'60px', height:'18px', top:'6.2px', left:'42px',gap:'12.26px', position:'absolute'}}>
                     <Typography sx={{ width:'60px',height:'18px',
                     fontFamily:'Poppins', fontWeight:'400',fontSize: '12.31px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
                             Mar 2025
                     </Typography>
                 </Box>
+                { calendarOpen && (
+                <Box className="calendar" sx={{width:'334px', height:'300px', borderRadius:'8px', border:'1px', padding:'24px', gap:'24px', backgroundColor:'#FFFFFF',
+                    borderColor:'#D9D9D9',boxShadow: '0px 4px 4px 0px rgba(0,0,0,0.25)', right:'-30px', position:'absolute', top:'40px',
+                    zIndex:1000, display:'flex', alignItems:'center', justifyContent:'center'
+
+                }}>
+                    <Box>
+                    <CalendarModal/>
+                    </Box>
+                </Box>)
+                }
         </Box>
-        <Box sx={{width:'705.37px', height:'281.8px', left:'60.39px', top:'66.63px', position:'absolute'}}>
+        <Box sx={{width:'705.37px', height:'270.8px', left:'60.39px', top:'66.63px', position:'absolute'}}>
             <BarChart
                 height={350}
                 series={[
@@ -65,7 +79,7 @@ const AnalyticGraph = () => {
                     scaleType: 'band',
                     data: xLabels,
                     tickLabelStyle: {
-                            fontSize: 6,
+                            fontSize: '6.33px',
                             whiteSpace: 'pre-line',
                             overflow: 'visible',
                             textAlign: 'center',

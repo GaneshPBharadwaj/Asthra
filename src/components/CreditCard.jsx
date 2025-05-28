@@ -1,17 +1,34 @@
 import { Box, Slider, Typography } from '@mui/material'
 import React from 'react'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import { useState } from 'react';
+import PendingActionsIcon from '@mui/icons-material/PendingActions';
+import { styled } from '@mui/material/styles';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { Opacity } from '@mui/icons-material';
+
 
 const CreditCard = () => {
 
-    const [value, setValue] = useState(80);
+    const [value, setValue] = useState(70);
     const max = 100;
 
     const handleChange = (_, newValue) => {
         setValue(newValue);
     };
+
+    const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+        height: '12.66px',
+        borderRadius: '20.04px',
+        [`&.${linearProgressClasses.colorPrimary}`]: {
+            backgroundColor: '#A79F9F',
+            Opacity:'68%'
+        },
+        [`& .${linearProgressClasses.bar}`]: {
+            borderRadius: '20.04px',
+            backgroundColor: '#21A945',
+        },
+    }));
 
   return (
     <Box sx={{width:'355px', height:'474px', top:'462px', left:'1115px', backgroundColor:'#FFFFFF', borderRadius:'8.74px'}}>
@@ -30,7 +47,7 @@ const CreditCard = () => {
                 </Box>
                 <Box sx={{width:'81.69px', height:'32px',}}>
                 <Typography sx={{ font:'Poppins', fontSize:'21.47px', fontWeight:'400', lineHeight:'100%'}}>
-                    <CurrencyRupeeIcon sx={{width:'12.8px', height:'12.8px'}}/>30,000
+                    <CurrencyRupeeIcon sx={{width:'8.05px', height:'8.05px'}}/>30,000
                 </Typography>
                 </Box>
             </Box>
@@ -42,7 +59,7 @@ const CreditCard = () => {
                 </Box>
                 <Box sx={{width:'59.05px', height:'23px',top:'18px', left:'-11px', position:'absolute',display:'flex', flexDirection:'row'}}>
                     <Box>
-                        <CurrencyRupeeIcon sx={{width:'3.5px', height:'5.24px', top:'8.48px', left:'2.01px', position:'absolute'}}/>
+                        <CurrencyRupeeIcon sx={{width:'8.05px', height:'8.05px', top:'8.48px', left:'1.01px', position:'absolute'}}/>
                     </Box>
                     <Box>
                         <Typography sx={{ left:'8.05px',width:'51px',height:'23px',fontFamily:'Poppins', fontSize:'15.27px', fontWeight:'400', lineHeight:'100%'
@@ -55,13 +72,13 @@ const CreditCard = () => {
             </Box>
             <Box>
                 <Typography sx={{width:'112px', height:'21px', top:'108px', left:'188px', fontFamily:'Poppins', fontWeight:'500',
-                    fontSize:'13.84px', position:'absolute', lineHeight:'100%',display: 'flex',alignItems: 'center', justifyContent:'center'
+                    fontSize:'12.85px', position:'absolute', lineHeight:'100%',display: 'flex',alignItems: 'center', justifyContent:'center'
                 }}>
                     Balance Credits
                 </Typography>
                 <Box sx={{width:'55.05px', height:'23px', top:'126px', left:'214px', position:'absolute'}}>
                     <Box sx={{width:'8.05px', height:'8.05px', top:'7.47px',position:'absolute'}}>
-                        <CurrencyRupeeIcon sx={{width:'3.5px', height:'5.24px', top:'1.01px', left:'2.01px', position:'absolute'}}/>
+                        <CurrencyRupeeIcon sx={{width:'8.05px', height:'8.05px', top:'1.01px', left:'1.01px', position:'absolute'}}/>
                     </Box>
                     <Typography sx={{width:'47px', height:'23px', fontFamily:'Poppins', fontWeight:'400',
                     fontSize:'15.27px',lineHeight:'100%', left:'8.05px',position:'absolute',display: 'flex',alignItems: 'center'}}>
@@ -78,7 +95,7 @@ const CreditCard = () => {
                 
                     <Box sx={{width:'30.59px', height:'30.59px',borderRadius:'15.29px', background:'#000000',
                     display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
-                        <AccessTimeOutlinedIcon sx={{width:'16.88px', height:'16.88px', color:'#FFFFFF'}}/>
+                        <PendingActionsIcon sx={{width:'16.88px', height:'16.88px', color:'#FFFFFF'}}/>
                     </Box>
                     <Typography sx={{width:'106px', height:'23px', fontFamily:'Poppins', fontWeight:'500', fontSize:'15.55px', lineHeight:'100%'
                         ,display: 'flex',alignItems: 'center'
@@ -90,7 +107,7 @@ const CreditCard = () => {
                     display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'
                 }}>
                     <Box sx={{width:'10px', height:'10px', top:'7px', display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
-                        <CurrencyRupeeIcon sx={{width:'5px', height:'7.5px', top:'1.25px', left:'2.5px', color:'#000000'}}/>
+                        <CurrencyRupeeIcon sx={{width:'12px', height:'12px', top:'1.25px', left:'2.5px', color:'#000000'}}/>
                     </Box>
                     <Typography sx={{width:'53px', height:'24px', fontFamily:'Poppins', fontWeight:'400', fontSize:'15.71px', lineHeight:'100%',
                         display: 'flex',alignItems: 'center'
@@ -112,49 +129,21 @@ const CreditCard = () => {
                 </Typography>
             </Box>
         </Box>
-        <Box>
-            <Box sx={{width:'284.78px', height:'12.66px', top:'398.42px', left:'30.22px', position:'absolute',}}>
-                <Slider
-                    aria-label="Always visible"
-                    value={value}
-                    onChange={handleChange}
-                    max={max}
-                    valueLabelDisplay="on"
-                    color="#21A945"
-                    sx={{
-                    height: '12.66px',
-                    borderRadius: '20.04px',
-                    padding: 0,
-                    border: '0px solid transparent',
-                    '& .MuiSlider-thumb': {
-                        width: '33.75px',
-                        height: '33.75px',
-                        backgroundColor: '#FFF',
-                        border: '1.05px solid #F3F3F3',
-                    },
-                    '& .MuiSlider-rail': {
-                        height: '12.66px',
-                        borderRadius: '20.04px',
-                        opacity: 0.3,
-                        backgroundColor: '#A79F9F',
-                    },
-                    '& .MuiSlider-track': {
-                        height: '12.66px',
-                        borderRadius: '20.04px',
-                        backgroundColor: '#21A945',
-                        border: '0px solid #21A945',
-                    },
-                    }}
-                />
-            </Box>
-            <Box sx={{width:'36.44px', height:'21px', left:'274.92px', top:'413.39px', position:'absolute'}}>
-                <Typography sx={{width:'28px', height:'21px', top:'6.28px',position:'absolute',fontFamily:'Poppins', fontWeight:'400', fontSize:'14.15px', lineHeight:'100%',}}>
-                    {max-value}%
-                </Typography>
+        <Box sx={{width:'284.78px', height:'12.66px', top:'398.42px', left:'30.22px', position:'absolute',}}>
+            <BorderLinearProgress variant="determinate" value={value} />
+        </Box>
+        <Box sx={{width:'36.44px', height:'21px', left:'30px', top:'413px', position:'absolute'}}>
+            <Typography sx={{width:'28px', height:'21px', top:'6.28px',position:'absolute',fontFamily:'Poppins', fontWeight:'400', fontSize:'14.15px', lineHeight:'100%',}}>
+                {value}%
+            </Typography>
+        </Box>
+        <Box sx={{width:'36.44px', height:'21px', left:'274.92px', top:'413.39px', position:'absolute'}}>
+            <Typography sx={{width:'28px', height:'21px', top:'6.28px',position:'absolute',fontFamily:'Poppins', fontWeight:'400', fontSize:'14.15px', lineHeight:'100%',}}>
+                {max-value}%
+            </Typography>
+        </Box>
 
-            </Box>
-
-    </Box>
+    
     </Box>
   )
 }
