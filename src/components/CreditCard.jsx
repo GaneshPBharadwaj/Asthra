@@ -45,10 +45,15 @@ const CreditCard = () => {
                         Maximum Credit
                     </Typography>
                 </Box>
-                <Box sx={{width:'81.69px', height:'32px',}}>
-                <Typography sx={{ font:'Poppins', fontSize:'21.47px', fontWeight:'400', lineHeight:'100%'}}>
-                    <CurrencyRupeeIcon sx={{width:'8.05px', height:'8.05px'}}/>30,000
-                </Typography>
+                <Box sx={{width:'81.69px', height:'32px',top:'20.4px', left:'0px', position:'absolute', display:'flex', alignItems:'center'}}>
+                    <Box sx={{width:'12.8px', height:'12.8px',top:'7.6px', left:'0px', position:'absolute'}}>
+                        <CurrencyRupeeIcon sx={{width:'12.8x', height:'12.8px'}}/>
+                    </Box>
+                    <Box sx={{width:'71px', height:'32px',top:'0px', left:'16.8px', position:'absolute', display:'flex', alignItems:'center'}}>
+                        <Typography sx={{ fontFamily:'Poppins', fontSize:'21.47px', fontWeight:'400', lineHeight:'100%'}}>
+                            30,000
+                        </Typography>
+                    </Box>
                 </Box>
             </Box>
             <Box sx={{width:'84px', height:'39px', top:'108px', left:'29px', position:'absolute'}}>
@@ -59,10 +64,10 @@ const CreditCard = () => {
                 </Box>
                 <Box sx={{width:'59.05px', height:'23px',top:'18px', left:'-11px', position:'absolute',display:'flex', flexDirection:'row'}}>
                     <Box>
-                        <CurrencyRupeeIcon sx={{width:'8.05px', height:'8.05px', top:'8.48px', left:'1.01px', position:'absolute'}}/>
+                        <CurrencyRupeeIcon sx={{width:'11px', height:'11px', top:'6.48px', left:'1.01px', position:'absolute'}}/>
                     </Box>
                     <Box>
-                        <Typography sx={{ left:'8.05px',width:'51px',height:'23px',fontFamily:'Poppins', fontSize:'15.27px', fontWeight:'400', lineHeight:'100%'
+                        <Typography sx={{ left:'12.05px',width:'51px',height:'23px',fontFamily:'Poppins', fontSize:'15.27px', fontWeight:'400', lineHeight:'100%'
                             ,position:'absolute',display: 'flex',alignItems: 'center'
                         }}>
                             20,000
@@ -77,11 +82,11 @@ const CreditCard = () => {
                     Balance Credits
                 </Typography>
                 <Box sx={{width:'55.05px', height:'23px', top:'126px', left:'214px', position:'absolute'}}>
-                    <Box sx={{width:'8.05px', height:'8.05px', top:'7.47px',position:'absolute'}}>
-                        <CurrencyRupeeIcon sx={{width:'8.05px', height:'8.05px', top:'1.01px', left:'1.01px', position:'absolute'}}/>
+                    <Box sx={{width:'8.05px', height:'8.05px', top:'5.7px',position:'absolute'}}>
+                        <CurrencyRupeeIcon sx={{width:'10.5px', height:'10.5px', top:'1.01px', left:'1.01px', position:'absolute'}}/>
                     </Box>
                     <Typography sx={{width:'47px', height:'23px', fontFamily:'Poppins', fontWeight:'400',
-                    fontSize:'15.27px',lineHeight:'100%', left:'8.05px',position:'absolute',display: 'flex',alignItems: 'center'}}>
+                    fontSize:'15.27px',lineHeight:'100%', left:'9.95px',position:'absolute',display: 'flex',alignItems: 'center'}}>
                         10,000
                     </Typography>
 

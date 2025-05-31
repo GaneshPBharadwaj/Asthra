@@ -55,7 +55,7 @@ const AnalyticGraph = () => {
                             Mar 2025
                     </Typography>
                 </Box>
-                { calendarOpen && (
+                { calendarOpen && 
                 <Box className="calendar" sx={{width:'334px', height:'300px', borderRadius:'8px', border:'1px', padding:'24px', gap:'24px', backgroundColor:'#FFFFFF',
                     borderColor:'#D9D9D9',boxShadow: '0px 4px 4px 0px rgba(0,0,0,0.25)', right:'-30px', position:'absolute', top:'40px',
                     zIndex:1000, display:'flex', alignItems:'center', justifyContent:'center'
@@ -64,7 +64,7 @@ const AnalyticGraph = () => {
                     <Box>
                     <CalendarModal/>
                     </Box>
-                </Box>)
+                </Box>
                 }
         </Box>
         <Box sx={{width:'705.37px', height:'270.8px', left:'60.39px', top:'66.63px', position:'absolute'}}>

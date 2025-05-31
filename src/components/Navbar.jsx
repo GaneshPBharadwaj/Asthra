@@ -8,13 +8,18 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Menu, Button } from '@mui/material';
+import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
 
 
 const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState('GPO');
   const [user, setUser] = useState('Kaveri hospital');
   const [userDropDown, setUserDropDown] = useState(false)
+  const hospitalList = ['Kaveri Hospital, ABC Hospital', 'New Med Hospital'];
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
+  // GPO and NGPO
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -30,6 +35,42 @@ const Navbar = () => {
   const handleClose = (value) => {
     setAnchorEl(null);
   };
+
+  // Hospital name
+
+  const [anchorHo, setAnchorHo] = useState(null);
+  const openHo = Boolean(anchorHo);
+
+  const handleClickHo = (event) => {
+    setAnchorHo(event.currentTarget);
+  };
+
+  const handleMenuItemClickHo = (value) => {
+    setUser(value);       // Save the selected value to state
+    setAnchorEl(null);             // Close the dropdown
+  };
+
+  const handleCloseHo = (value) => {
+    setAnchorHo(null);
+  };
+
+  const handleChange = (event) => {
+    const inputValue = event.target.value;
+    setInputValue(inputValue);
+
+    // Filter suggestions based on input value
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setFilteredSuggestions(filteredSuggestions);
+  };
+
+  const handleSelect = (value) => {
+    setInputValue(value);
+    setFilteredSuggestions([]);
+  };
+
+
 
   return (
     <Box sx={{ display: 'flex',flexDirection: 'row',alignItems: 'center',justifyContent: 'center', backgroundColor:'#FFFFFF'}}>
@@ -76,52 +117,71 @@ const Navbar = () => {
       </Box>
 
       {/* hospital name */}
-      <Box sx={{ width: '252px', height: '50.4px',position: 'absolute',top: '39px',left: '897px',borderRadius: '10px',border: '0.84px solid #00000059',
-        display: 'flex',alignItems: 'center',justifyContent: 'space-between',gap: '8px',backgroundColor: 'transparent',}}>
-          <Box sx={{width:'214px', height:'20.16px', top:'15.12px', left:'19.32px', position:'absolute',
-          display: 'flex',alignItems: 'center', display: 'flex',alignItems: 'center'}}>
-            <SearchIcon sx={{ width:'20.16px',height:'20.16px',color: '#000' }} />
+
+      <Box sx={{ width: '252px', height: '50.4px',position: 'absolute',top: '39px',left: '897px',borderRadius: '10px',
+        border: '0.84px solid #00000059',gap: '8.4px',backgroundColor: 'transparent',}}>
+        <div>
+          <Button onClick={handleClickHo} variant='text' sx={{width:'214px', height:'20.16px', left:'19.32px', top:'15.12px', position:'absolute',
+            color:'#000000', '&:hover': { background: 'none', boxShadow: 'none', textDecoration: 'none'}
+          }}>
+            <SearchIcon sx={{ width:'20.16px',height:'20.16px',color: '#000', left:'0px', position:'absolute' }} />
             <Typography sx={{width:'106px', height:'21px', top:'0.88px', left:'36.68px', fontFamily:'Poppins', fontWeight:'400',
-              fontSize:'14px', lineHeight:'100%', position:'absolute'
+              fontSize:'12px', lineHeight:'100%', position:'absolute',display: 'flex',alignItems: 'center',justifyContent:'center'
             }}>
-              Kaveri Hospital
+              {user}
             </Typography>
-            <KeyboardArrowDownIcon sx={{width:'20.16px',height:'20.16px',left:'193.16px',position:'absolute',color:'#000000'}}/>           
-          </Box>
-      </Box>
-
-
-
-      {/* <Box sx={{ width: '252px', height: '50.4px',position: 'absolute',top: '39px',left: '897px',borderRadius: '10px',border: '0.84px solid #00000059',
-        display: 'flex',alignItems: 'center',justifyContent: 'space-between',gap: '8px',backgroundColor: 'transparent',}}>
-          <Box sx={{width:'214px', height:'20.16px', top:'15.12px', left:'19.32px', position:'absolute',
-          display: 'flex',alignItems: 'center',}}>
-              <SearchIcon sx={{ width:'20.16px',height:'20.16px',color: '#000' }} />
-              <select
-                value={selectedOption}
-                onChange={handleChange}
-                style={{
-                  width: '106px',
-                  height:'21px',
-                  top:'0.88px',
-                  left:'36.68px',
-                  fontFamily: 'Poppins',
-                  fontWeight: '400',
-                  fontSize: '14p.28x',
-                  position: 'absolute',
-                  border: 'none',              
-                  outline: 'none',             
-                  background: 'transparent',   
-                  appearance: 'none',
-                }}
-              >
-                <option value="Kaveri Hospital">Kaveri Hospital</option>
-                <option value="Option2">Option 2</option>
-                <option value="Option3">Option 3</option>
-              </select> 
-              <KeyboardArrowDownIcon sx={{width:'20.16px',height:'20.16px',left:'193.16px',position:'absolute',color:'#000000'}}/>           
-          </Box>
-      </Box> */}
+            <KeyboardArrowDownIcon sx={{width:'20.16px',height:'20.16px',left:'193.16px',position:'absolute',color:'#000000'}}/>
+          </Button>
+          
+          <Menu anchorEl={anchorHo} open={openHo} onClose={handleCloseHo} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+            sx={{
+              width: '252px', top: '30px', 
+              '& .MuiMenu-list': {
+                height:'140px',
+                width: '252px',
+                boxShadow: 'none',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems:'center',
+              },
+            }}>
+              <Box sx={{width:'210px', height:'34px', top:'7px', left:'4px', position:'absolute',borderRadius:'10px', border:'0.84px solid rgba(0,0,0,0.35)'}}>
+                <SearchIcon sx={{ width:'20.16px',height:'20.16px',color: '#000', top:'6px', left:'11px', position:'absolute' }} />
+                <textarea placeholder='Search...' onChange={handleSelect} style={{height:'18px',left:'42px', top:'8px', position:'absolute',
+                   border: 'none', padding: 0, outline: 'none', resize: 'none' }} />
+              </Box>
+              <Box sx={{top:'50px',left:'4px',width:'210px',border:'1px solid rgba(0,0,0,0.45)',borderRadius:'10px',
+                 position:'absolute', backgroundColor:'#FFFFFF'}}>
+                <MenuItem sx={{backgroundColor: 'transparent',gap:'10px'
+                  }} onClick={() => handleMenuItemClickHo('Kaveri Hospital')}>
+                   <Box sx={{width:'250px', height:'20px',display:'flex', alignItems:'center'}}>
+                    <Box sx={{width:'20px',height:'20px',backgroundColor:'#D9D9D9',borderRadius:'20px',top:'5px', position:'absolute', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                        <LocalHospitalIcon sx={{width:'14px',height:'14px',backgroundColor:'#D9D9D9',color:'#000000'}}/>
+                    </Box>
+                    <Typography sx={{left:'50px',top:'3.5px',position:'absolute'}}>Kaveri Hospital</Typography></Box>
+                </MenuItem>
+                <MenuItem sx={{backgroundColor: 'transparent',gap:'10px'
+                  }} onClick={() => handleMenuItemClickHo('ABC Hospital')}>
+                   <Box sx={{width:'250px', height:'20px',display:'flex', alignItems:'center'}}>
+                    <Box sx={{width:'20px',height:'20px',backgroundColor:'#D9D9D9',borderRadius:'20px',top:'5px', position:'absolute', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                        <LocalHospitalIcon sx={{width:'14px',height:'14px',backgroundColor:'#D9D9D9',color:'#000000'}}/>
+                    </Box>
+                    <Typography sx={{left:'50px',top:'3.5px',position:'absolute'}}>ABC Hospital</Typography></Box>
+                </MenuItem>
+                <MenuItem sx={{backgroundColor: 'transparent',gap:'10px'
+                  }} onClick={() => handleMenuItemClickHo('New Med Hospital')}>
+                   <Box sx={{width:'250px', height:'20px',display:'flex', alignItems:'center'}}>
+                    <Box sx={{width:'20px',height:'20px',backgroundColor:'#D9D9D9',borderRadius:'20px',top:'5px', position:'absolute', display:'flex', alignItems:'center', justifyContent:'center'}}>
+                        <LocalHospitalIcon sx={{width:'14px',height:'14px',backgroundColor:'#D9D9D9',color:'#000000'}}/>
+                    </Box>
+                    <Typography sx={{left:'50px',top:'3.5px',position:'absolute'}}>New Med Hospital</Typography></Box>
+                </MenuItem>
+              </Box>
+            </Menu>
+          </div>
+        </Box>
+        
       <IconButton sx={{ border: '1px solid #ccc', borderRadius: '8px',
           width:'58px', height:'50px', top:'38px', left:'1175px', position:'absolute'
         }}>
@@ -130,9 +190,14 @@ const Navbar = () => {
           </Badge>
       </IconButton>
                 {/* Avatar */}
-      <Avatar src={avatar} onClick={() => setUserDropDown(prev => !prev)} sx={{ width: '52px', height: '52px',
+      {/* <Avatar src={avatar} onClick={() => setUserDropDown(prev => !prev)} sx={{ width: '52px', height: '52px',
           top:'38px', left:'1260px',gap:'1.13px', position:'absolute',}}
-      />
+      /> */}
+
+      <Box onClick={() => setUserDropDown(prev => !prev)} sx={{ width: '52px', height: '52px',top:'38px', left:'1260px',gap:'1.13px', position:'absolute',
+         background:'#FFFFFF', borderRadius:'26px', display:'flex', justifyContent:'center', alignItems:'center'}}>
+        <LocalHospitalOutlinedIcon sx={{color:'#656565', width:'32px', height:'32px'}}/>
+      </Box>
        {userDropDown && (
         <Box
           sx={{ width: '185px',height: '68px',borderRadius: '4.79px',backgroundColor: '#FFFFFF',border: '0.96px solid rgba(0, 0, 0, 0.45)',

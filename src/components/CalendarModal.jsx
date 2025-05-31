@@ -6,7 +6,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 export default function CalendarModal() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar sx={{width:'334px', height:'344px'}}/>
+      <DateCalendar sx={{width:'250px', height:'280px'}} pop/>
     </LocalizationProvider>
   );
 }
