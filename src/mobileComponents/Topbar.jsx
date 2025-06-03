@@ -1,7 +1,6 @@
 import { Avatar, Badge, Box, IconButton, Typography, Button, Menu, MenuItem } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import Asthra from '../media/asthraLogo.png'
-import avatar from '../media/avatar.jpg'
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import SearchIcon from '@mui/icons-material/Search';

@@ -56,39 +56,6 @@ const SummaryCardsMobile = () => {
             </DatePicker>
         </LocalizationProvider>
       </Box>
-      {/* <Box className='calendar' sx={{
-        width:'89.73px', height:'23.24px', left:'268.27px', top:'13px', borderRadius:'5.49px', border:'0.46px solid rgba(0,0,0,0.35)', position:'absolute'
-      }}>
-        <Box sx={{width:'101.99px', height:'28.21px',top:'62px', left:'112.05px', position:'absolute', zIndex:100}}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker value={value} onChange={(newValue)=> setValue(newValue)} 
-                 slotProps={{
-                    layout:{
-                        sx:{
-                            zIndex:100,
-                            top:'10px',
-                            padding:'-2px',
-                        }
-                    },
-                    textField:{
-                        size:'small',
-                        sx:{
-                            width:'150px',
-                            '& .MuiInputBase-root': {
-                                height: '20.21px',
-                            },
-                            '& input': {
-                                padding: '0 8px',   // optional: control text padding
-                                fontSize: '13px',   // optional: control font size
-                            },
-                        }
-                    }
-                }} 
-                >
-                </DatePicker>
-                </LocalizationProvider>
-            </Box>
-      </Box> */}
       <Box className="summary-card-1"
           sx={{width: '352px',height: '115px',top: '56px',left:'9px',borderRadius: '7.28px',border: '0.83px solid #D9D9D9',
             position: 'absolute',

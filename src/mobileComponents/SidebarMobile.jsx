@@ -17,20 +17,26 @@ import CategoryIcon from '@mui/icons-material/Category';
 
 const SidebarMobile = ({handleSidebar, handleExpandSidebar}) => {
 
-    // const [selected, setSelected] = useState(null);
 
     const iconStyle = {
         width: '40px',height: '40px',
     };
 
     const iconBoxStyle={
-      width: '64.96px',height: '66.49px',top: '0px',left: '10px',position: 'absolute',
+      width: '64.96px',height: '66.49px',
       border:'3.25px solid #B6B6B6' , borderRadius:'16.24px',display:'flex', alignItems:'center', justifyContent:'center'
     }
 
     const boxStyle = (top) => ({
-        width: '84.96px',height: '86.49px',top: `${top}px`,left: '81.52px',position: 'absolute',
-        cursor: 'pointer'
+        width: '107px',height: '105px',top: `${top}px`,left: '70px',position: 'absolute',display:'flex', alignItems:'center', justifyContent:'center',
+        cursor: 'pointer',
+        '&:hover': {
+        backgroundColor:'#FCDFE0',
+        color:'#EA232B',
+        '&:hover .iconBox':{
+          border:'3.25px solid #EA232B'
+        }
+        },
     });
 
 
@@ -57,10 +63,10 @@ const SidebarMobile = ({handleSidebar, handleExpandSidebar}) => {
         </Box>
 
         {menuItems.map((item, index) => (
-          <Box key={item.id} sx={boxStyle(261.5 + index * 149.6)} onClick={handleExpandSidebar}>
-            <Box sx={iconBoxStyle}>
-            {item.icon}
-            </Box>
+            <Box key={item.id} sx={boxStyle(252 + index * 149.59)} onClick={handleExpandSidebar}>
+              <Box className='iconBox' sx={iconBoxStyle}>
+              {item.icon}
+              </Box>
           </Box>
         ))}
 

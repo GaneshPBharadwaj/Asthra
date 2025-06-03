@@ -2,7 +2,7 @@ import { Box, Button, styled, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { BarChart } from '@mui/x-charts/BarChart';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import CalendarModalMobile from './CalendarModalMobile';
+// import CalendarModalMobile from './CalendarModalMobile';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -51,57 +51,35 @@ const AnalyticGraphMobile = () => {
         fontFamily:'Poppins', fontWeight:'500',fontSize: '12.19px', lineHeight: '100%',  display: 'flex',alignItems: 'center',}}>
                 Sort By Month
         </Typography>
-
-        {/* <Box sx={{
-            width:'101.99px', height:'28.21px', top:'68px', left:'112.05px', position:'absolute', borderRadius:'6.73px', border:'0.57px solid rgba(0,0,0,0.35)'
-        }}>
-            <CalendarMonthOutlinedIcon sx={{width:'15.19px', height:'15.19px', top:'6.35px', left:'13.3px', position:'absolute'}}/>
-            <Typography sx={{width:'52px', height:'16px', top:'5.57px', left:'36.13px', position:'absolute',
-                fontFamily:'Poppins', fontWeight:'400', fontSize:'10.59px', lineHeight:'100%',display:'flex', alignItems:'center'
-            }}>Mar 2025</Typography>
-        </Box> */}
-
-
-        {/* {/* { calendarOpen && 
-            <Box className="calendar" sx={{width:'334px', height:'300px', borderRadius:'8px', border:'1px', padding:'24px', gap:'24px', backgroundColor:'#FFFFFF',
-                borderColor:'#D9D9D9',boxShadow: '0px 4px 4px 0px rgba(0,0,0,0.25)', right:'-30px', position:'absolute', top:'40px',
-                zIndex:1000, display:'flex', alignItems:'center', justifyContent:'center'
-
-            }}>
-                <Box>
-                <CalendarModal/>
-                </Box>
-            </Box>
-        } */}
-            <Box sx={{width:'145px', height:'28.21px',top:'62px', left:'112.05px', position:'absolute', zIndex:100}}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker value={value} onChange={(newValue)=> setValue(newValue)} 
-                 slotProps={{
-                    layout:{
-                        sx:{
-                            zIndex:100,
-                            top:'10px',
-                            padding:'-2px',
-                        }
-                    },
-                    textField:{
-                        size:'small',
-                        sx:{
-                            width:'150px',
-                            '& .MuiInputBase-root': {
-                                height: '20.21px',
-                            },
-                            '& input': {
-                                padding: '0 8px',   // optional: control text padding
-                                fontSize: '13px',   // optional: control font size
-                            },
-                        }
+        <Box sx={{width:'145px', height:'28.21px',top:'62px', left:'112.05px', position:'absolute', zIndex:100}}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker value={value} onChange={(newValue)=> setValue(newValue)} 
+                slotProps={{
+                layout:{
+                    sx:{
+                        zIndex:100,
+                        top:'10px',
+                        padding:'-2px',
                     }
-                }} 
-                >
-                </DatePicker>
-                </LocalizationProvider>
-            </Box>
+                },
+                textField:{
+                    size:'small',
+                    sx:{
+                        width:'150px',
+                        '& .MuiInputBase-root': {
+                            height: '20.21px',
+                        },
+                        '& input': {
+                            padding: '0 8px',   // optional: control text padding
+                            fontSize: '13px',   // optional: control font size
+                        },
+                    }
+                }
+            }} 
+            >
+            </DatePicker>
+        </LocalizationProvider>
+        </Box>
         <Box
             sx={{width: '326px',height: '250px',top:'100px',left:'10px',
             position: 'absolute',display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
@@ -136,8 +114,6 @@ const AnalyticGraphMobile = () => {
                 height={280}
             />
         </Box>
-
-
     </Box>
   )
 }

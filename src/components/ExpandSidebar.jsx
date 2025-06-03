@@ -77,7 +77,6 @@ const ExpandSidebar = ({handleToggle}) => {
           </Typography>
         </Box>
       ))}
-
     </Box>
   )
 }

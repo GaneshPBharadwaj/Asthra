@@ -9,25 +9,21 @@ import { Opacity } from '@mui/icons-material';
 
 const CreditCardMobile = () => {
 
-  const [value, setValue] = useState(60);
-      const max = 100;
+    const [value, setValue] = useState(60);
+    const max = 100;
   
-  const handleChange = (_, newValue) => {
-      setValue(newValue);
-  };
-  
-  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-      height: '12.66px',
-      borderRadius: '20.04px',
-      [`&.${linearProgressClasses.colorPrimary}`]: {
-          backgroundColor: '#A79F9F',
-          Opacity:'68%'
-      },
-      [`& .${linearProgressClasses.bar}`]: {
-          borderRadius: '20.04px',
-          backgroundColor: '#21A945',
-      },
-  }));
+    const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+        height: '12.66px',
+        borderRadius: '20.04px',
+        [`&.${linearProgressClasses.colorPrimary}`]: {
+            backgroundColor: '#A79F9F',
+            Opacity:'68%'
+        },
+        [`& .${linearProgressClasses.bar}`]: {
+            borderRadius: '20.04px',
+            backgroundColor: '#21A945',
+        },
+    }));
 
   return (
     <Box sx={{

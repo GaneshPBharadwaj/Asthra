@@ -13,10 +13,6 @@ const CreditCard = () => {
     const [value, setValue] = useState(70);
     const max = 100;
 
-    const handleChange = (_, newValue) => {
-        setValue(newValue);
-    };
-
     const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
         height: '12.66px',
         borderRadius: '20.04px',
@@ -147,8 +143,6 @@ const CreditCard = () => {
                 {max-value}%
             </Typography>
         </Box>
-
-    
     </Box>
   )
 }

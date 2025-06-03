@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import avatar from '../media/avatar.jpg';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import LogoutIcon from '@mui/icons-material/Logout';

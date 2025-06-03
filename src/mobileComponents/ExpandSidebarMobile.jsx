@@ -77,7 +77,6 @@ const ExpandSidebarMobile = ({handleExpandSidebar}) => {
           </Typography>
         </Box>
       ))}
-
     </Box>
   )
 }
