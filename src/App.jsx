@@ -14,8 +14,7 @@ function App() {
   const [error, setError] = useState(null)
   
 
-  const token = import.meta.env.TOKEN
-
+  const token = ''
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 426px)');
 

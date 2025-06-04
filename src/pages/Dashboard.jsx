@@ -39,6 +39,7 @@ import dayjs from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import isBetweenPlugin from 'dayjs/plugin/isBetween';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
 dayjs.extend(isoWeek);
 
 
@@ -541,12 +542,16 @@ const Dashboard = ({data}) => {
                       <Box onClick={() => setUserDropDown(prev => !prev)} sx={{ width: '52px', height: '52px', background:'#FFFFFF', borderRadius:'26px', display:'flex', justifyContent:'center', alignItems:'center', cursor:'pointer'}}>
                         <LocalHospitalOutlinedIcon sx={{color:'#656565', width:'32px', height:'32px'}}/>
                       </Box>
-                      {userDropDown && (
+                      
+                    </Box>
+                  </Box>
+                </Box>
+                {userDropDown && (
                         <Box
                           sx={{
-                            position: 'absolute',top: '60px',right: 0,width: '185px',borderRadius: '5px',backgroundColor: '#FFFFFF',
-                            border: '1px solid rgba(0, 0, 0, 0.45)',boxShadow: '0px 4px 10px rgba(0,0,0,0.1)',zIndex: 5000,
-                            p: 1.5,display: 'flex',flexDirection: 'column',gap: 1,}}>
+                            position: 'fixed',top: '60px',right: '10px',width: '180px',borderRadius: '5px',backgroundColor: '#FFFFFF',
+                            border: '1px solid rgba(0, 0, 0, 0.45)',boxShadow: '0px 4px 10px rgba(0,0,0,0.1)',zIndex: 1000,
+                            p: 1.5,display: 'flex',flexDirection: 'column',}}>
                           {/* User Info Row */}
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <LocalHospitalIcon sx={{ color: '#DFDFDF', fontSize: '20px' }} />
@@ -567,10 +572,7 @@ const Dashboard = ({data}) => {
                           </Box>
                         </Box>
                       )}
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className='bottomPart' sx={{height:'95%', display: 'flex', flexDirection:{sm:'column', md:'row'}, gap: 5, padding:5, overflow:'visible'}}>
+                <Box className='bottomPart' sx={{height:'95%', display: 'flex', flexDirection:{sm:'column', md:'row'}, gap: 7, padding:5, overflow:'visible'}}>
                 <Box className='bottomPartLeft' sx={{display:'flex', flexDirection:'column', justifyContent:'space-between',width:{md:'60%', sm:'100%'},
                    alignItems:'center', height:'100%',gap:3}}>
                     <Box className='summaryCard' sx={{width:'100%',display:'flex', flexDirection:'column', gap:2, backgroundColor:'#FFFFFF',padding:2, borderRadius:'10px'}}>
@@ -817,7 +819,7 @@ const Dashboard = ({data}) => {
                           Analytics
                           </Typography>
                         </Box>
-                        <Box className='topRight' sx={{width:'70%',display:'flex', flexDirection:'row', alignItems:'center',}}>
+                        <Box className='topRight' sx={{width:'70%',display:'flex', flexDirection:'row', alignItems:'center',justifyContent:'space-around'}}>
                             <Box sx={{ width:'100%',justifyContent:'center',display: 'flex', alignItems: 'center', gap: 0.5}}>
                               <Box sx={{width: '14.24px',height: '14.24px',borderRadius: '50%',backgroundColor: '#EA232B',}}/>
                               <Typography sx={{fontFamily: 'Poppins',fontWeight: 400,fontSize: '10.2px',}}>
@@ -862,9 +864,11 @@ const Dashboard = ({data}) => {
                         </Box>
                       </Box>
                       <Box sx={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-                        <Box>
-                          <Button onClick={() => setStartIndex(prev => Math.max(prev - 7, 0))} disabled={startIndex === 0}>l</Button>
-                        </Box>
+                        <IconButton onClick={() => setStartIndex(prev => Math.min(prev - 7, 0))} disabled={startIndex === 0}
+                          sx={{ backgroundColor: '#fff',color: '#000000',width: '66px',height: '50px',borderRadius: '10px', transform:'rotate(180deg)'
+                          }}>
+                          <PlayCircleOutlinedIcon />
+                        </IconButton>
                         <Box className='bottom' sx={{width:'100%',display:'flex',alignItems:'center', justifyContent:'flex-start', overflowX: 'auto' }}>
                           <Box sx={{ minWidth: '100%' }}>
                           <BarChart
@@ -896,20 +900,22 @@ const Dashboard = ({data}) => {
                           />
                         </Box>
                         </Box>
-                        <Box>
-                          <Button onClick={() => setStartIndex(prev => Math.min(prev + 7, maxIndex))} disabled={startIndex >= maxIndex}>r</Button>
-                        </Box>
+                        <IconButton onClick={() => setStartIndex(prev => Math.min(prev +7, maxIndex))} disabled={startIndex >= maxIndex}
+                          sx={{ backgroundColor: '#fff',color: '#000000',width: '66px',height: '50px',borderRadius: '10px',
+                          }}>
+                          <PlayCircleOutlinedIcon />
+                        </IconButton>
                       </Box>
                     </Box>
                 </Box>
-                <Box className='bottomPartright' sx={{display:'flex', flexDirection:'column', justifyContent:'space-between',width:{md:'60%', sm:'100%'},
+                <Box className='bottomPartright' sx={{display:'flex', flexDirection:'column', justifyContent:'space-between',width:{md:'40%', sm:'100%'},
                    alignItems:'center', height:'100%', gap:2}}>
                   <Box className='OrderStatus' sx={{display:'flex', flexDirection:'column', justifyContent:'flex-start',
                      backgroundColor:'#ffffff', width:'100%',padding:2,borderRadius:'10px',}}>
                     <Box className='topPart' sx={{display:'flex', flexDirection:'row', justifyContent:'flex-end', alignItems:'center',
                        gap:1}}>
                       <FiberManualRecordIcon sx={{ color: '#21A945',width:'12.75px', height:'12.75px' }} />
-                      <Typography sx={{width:'50px', height:'19px',fontFamily:'Inter',fontSize:'15.94px', fontWeight: 700, 
+                      <Typography sx={{width:'50px', height:'19px',fontFamily:'Poppins',fontSize:'15.94px', fontWeight: 700, 
                         color: '#21A945',display: 'flex',alignItems: 'center'}}>
                         Active
                       </Typography>
