@@ -39,6 +39,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import isBetweenPlugin from 'dayjs/plugin/isBetween';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
+
 dayjs.extend(isoWeek);
 
 
@@ -84,54 +86,47 @@ const DashboardMobileView = ({data}) => {
   }, [valueSummary]);
 
   // analytic graph
+  // 
   let dateAnalytic = new Date();
-    const[valueAnalytic, setValueAnalytic] = useState(dayjs(dateAnalytic))
-    // console.log(valueAnalytic)
-  
-    const generateXLabels = (selectedDate) => {
-        const labels = [];
-        const startOfMonth = dayjs(selectedDate).startOf('month');
-        const endOfMonth = dayjs(selectedDate).endOf('month');
-        const totalDays = endOfMonth.date(); // number of days in the month
-    
-        for (let i = 0; i < totalDays; i++) {
-          const date = startOfMonth.add(i, 'day');
-          labels.push(`${date.format('ddd')}\n${date.format('DD-MM')}`);
-        }
-        return labels;
-      };
-    
-      const xLabels = generateXLabels(valueAnalytic);
-    
-    
-      // console.log(xLabels);
-    
-      function getMonthlyOrderData(data, selectedDate) {
-        const totalOrdersReceived = [];
-        const ordersApprovalPending = [];
-    
-        const startDate = dayjs(selectedDate).startOf('month');
-        const endDate = dayjs(selectedDate).endOf('month');
-        const totalDays = endDate.date();
-    
-        for (let i = 0; i < totalDays; i++) {
-          const currentDate = startDate.add(i, 'day');
-          const formattedDate = currentDate.format('YYYY-MM-DD');
-    
-          const dailyData = data.find(item => item.ordered_date === formattedDate);
-    
-          if (dailyData) {
-            totalOrdersReceived.push(parseInt(dailyData.total_order_received));
-            ordersApprovalPending.push(parseInt(dailyData.order_approval_pending));
-          } else {
-            totalOrdersReceived.push(0);
-            ordersApprovalPending.push(0);
-          }
-        }
-        return { totalOrdersReceived, ordersApprovalPending };
-      }
-    
-    const { totalOrdersReceived, ordersApprovalPending } = getMonthlyOrderData(analytics_section, valueAnalytic);
+  const [valueAnalytic, setValueAnalytic] = useState(dayjs(dateAnalytic));
+
+  const generateXLabels = (selectedDate) => {
+    const labels = [];
+    const startOfMonth = dayjs(selectedDate).startOf('month');
+    const totalDays = startOfMonth.daysInMonth();
+
+    for (let i = 0; i < totalDays; i++) {
+      const date = startOfMonth.add(i, 'day');
+      labels.push({
+        label: `${date.format('ddd')}\n${date.format('DD-MM')}`,
+        dateKey: date.format('YYYY-MM-DD'), // to match with `ordered_date`
+      });
+    }
+    return labels;
+  };
+
+  const fullXLabels = generateXLabels(valueAnalytic);
+
+  const getMonthlyOrderData = (data, xLabels) => {
+    const totalOrdersReceived = [];
+    const ordersApprovalPending = [];
+
+    xLabels.forEach(({ dateKey }) => {
+      const dailyData = data.find(item => item.ordered_date === dateKey);
+      totalOrdersReceived.push(dailyData ? parseInt(dailyData.total_order_received) : 0);
+      ordersApprovalPending.push(dailyData ? parseInt(dailyData.order_approval_pending) : 0);
+    });
+
+    return { totalOrdersReceived, ordersApprovalPending };
+  };
+
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 7;
+  const maxIndex = fullXLabels.length - visibleCount;
+
+  const visibleLabels = fullXLabels.slice(startIndex, startIndex + visibleCount);
+  const { totalOrdersReceived, ordersApprovalPending } = getMonthlyOrderData(analytics_section, visibleLabels);
+
   
   // console.log("Total Orders Received (7 days):", totalOrdersReceived);
   // console.log("Orders Approval Pending (7 days):", ordersApprovalPending);
@@ -751,40 +746,63 @@ const DashboardMobileView = ({data}) => {
             </LocalizationProvider>
             </Box>
             <Box
-                sx={{width: '326px',height: '250px',top:'100px',left:'10px',overflowX: 'hidden',
-                  overflowY: 'auto',position: 'absolute',display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
-                    <Box sx={{width:'100%',height:'100%' }}>
+              sx={{position: 'absolute',top: '100px',left: '10px',width: '326px',height: '250px',overflow: 'hidden',display: 'flex',
+                flexDirection: 'row',}}>
+              <Box
+                sx={{display: 'flex',flexDirection: 'column',alignItems: 'center',justifyContent: 'space-between',py: 1,}}>
+                <IconButton
+                  onClick={() => setStartIndex(prev => Math.min(prev + 7, maxIndex))}
+                  disabled={startIndex >= maxIndex}
+                  sx={{backgroundColor: '#fff',color: '#000',width: '40px',height: '40px',borderRadius: '10px',transform: 'rotate(90deg)',}}>
+                  <PlayCircleOutlinedIcon />
+                </IconButton>
+
+                {/* Spacer to push chart to center vertically */}
+                <Box sx={{ flexGrow: 1 }} />
+
+                {/* Date Decrease (Previous Week) */}
+                <IconButton
+                  onClick={() => setStartIndex(prev => Math.max(prev - 7, 0))}
+                  disabled={startIndex === 0}
+                  sx={{
+                    backgroundColor: '#fff',color: '#000',width: '40px',height: '40px',borderRadius: '10px',transform: 'rotate(-90deg)',}}>
+                  <PlayCircleOutlinedIcon />
+                </IconButton>
+              </Box>
+
+              {/* CHART BOX */}
+              <Box
+                sx={{flexGrow: 1,display: 'flex',alignItems: 'center',justifyContent: 'center',px: 1,}}>
                 <BarChart
-                    yAxis={[
+                  height={200}
+                  layout="horizontal"
+                  series={[
+                    { data: totalOrdersReceived, stack: 'A', color: '#EA232B' },
+                    { data: ordersApprovalPending, stack: 'A', color: '#FBD7D9' },
+                  ]}
+                  xAxis={[
                     {
-                        scaleType: 'band',
-                        data: xLabels,
-                        tickLabelStyle: {
+                      min: 0,
+                      max: 25,
+                      tickMinStep: 5,
+                      tickValues: [0, 5, 10, 15, 20, 25],
+                      label: 'Orders',
+                    },
+                  ]}
+                  yAxis={[
+                    {
+                      scaleType: 'band',
+                      data: visibleLabels.map(l => l.label),
+                      tickLabelStyle: {
                         fontSize: '6.33px',
                         whiteSpace: 'pre-line',
                         overflow: 'visible',
                         textAlign: 'center',
-                        },
+                      },
                     },
-                    ]}
-                    xAxis={[
-                    {
-                        tickMinStep: 5,
-                        min: 0,
-                        max: 25,
-                        tickValues: [0, 5, 10, 15, 20, 25],
-                    },
-                    ]}
-                    series={[
-                    { data: totalOrdersReceived, stack: 'A', color: '#EA232B' },
-                    { data: ordersApprovalPending, stack: 'A', color: '#FBD7D9' },
-                    ]}
-                    layout="horizontal"
-                    grid={{ vertical: true }}
-                    width={320}  // slightly smaller than Box for padding
-                    height={xLabels.length * 20 }
+                  ]}
                 />
-                </Box>
+              </Box>
             </Box>
         </Box>
         </Box>
